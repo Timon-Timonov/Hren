@@ -1,9 +1,9 @@
-package it.academy.classes.threads;
+package it.academy.controllers.threads;
 
-import it.academy.classes.Dump;
-import it.academy.classes.Scientist;
-import it.academy.classes.models.Part;
-import it.academy.classes.models.TimeHolder;
+import it.academy.controllers.Dump;
+import it.academy.controllers.Scientist;
+import it.academy.controllers.resouces.Part;
+import it.academy.controllers.resouces.TimeHolder;
 import it.academy.utils.Constants;
 import it.academy.utils.Rnd;
 
@@ -30,7 +30,7 @@ public class Minion extends Thread {
 	@Override
 	public void run() {
 		//System.out.println(Thread.currentThread().getName() + " start. Minion");
-		int alredyTake = 0;
+		int alreadyTake = 0;
 
 		synchronized (holder) {
 			toWait();
@@ -43,15 +43,15 @@ public class Minion extends Thread {
 
 				if (currentNight <holderNightNumber) {
 					currentNight = holderNightNumber;
-					alredyTake = 0;
+					alreadyTake = 0;
 					defineCount();
 					continue;
 
 				} else if (currentNight == holderNightNumber) {
 
-					if (wantToTakeInNight > alredyTake) {
+					if (wantToTakeInNight > alreadyTake) {
 						takePart(dump.pickUpAnyPart());
-						alredyTake++;
+						alreadyTake++;
 						continue;
 					}
 				}

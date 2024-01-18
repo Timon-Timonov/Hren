@@ -1,11 +1,11 @@
 package it.academy;
 
-import it.academy.classes.Dump;
-import it.academy.classes.Scientist;
-import it.academy.classes.models.Robot;
-import it.academy.classes.threads.Factory;
-import it.academy.classes.threads.Minion;
-import it.academy.classes.threads.Timer;
+import it.academy.controllers.Dump;
+import it.academy.controllers.Scientist;
+import it.academy.utils.RobotLaboratory;
+import it.academy.controllers.threads.Factory;
+import it.academy.controllers.threads.Minion;
+import it.academy.controllers.threads.Timer;
 import it.academy.utils.Constants;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class Competition {
 
 	private static void findWinner(List<Scientist> list) {
 		List<Integer> countOfRobots = list.stream()
-				.map(scientist -> Robot.createRobots(scientist.getStockMap()))
+				.map(scientist -> RobotLaboratory.createRobots(scientist.getStockMap()))
 				.collect(Collectors.toList());
 
 		int maxCount = countOfRobots.stream()

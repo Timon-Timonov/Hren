@@ -1,6 +1,6 @@
-package it.academy.classes.threads;
+package it.academy.controllers.threads;
 
-import it.academy.classes.models.TimeHolder;
+import it.academy.controllers.resouces.TimeHolder;
 import it.academy.utils.Constants;
 
 public class Timer extends Thread {

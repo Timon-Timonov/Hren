@@ -1,6 +1,6 @@
-package it.academy.classes;
+package it.academy.controllers;
 
-import it.academy.classes.models.Part;
+import it.academy.controllers.resouces.Part;
 
 import java.util.*;
 
