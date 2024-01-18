@@ -15,13 +15,13 @@ import java.util.stream.IntStream;
 
 public class Competition {
 
-	private static List<Scientist> scientists = new ArrayList<>();
-	private static List<Thread> threads = new ArrayList<>();
+	private List<Scientist> scientists = new ArrayList<>();
+	private List<Thread> threads = new ArrayList<>();
 
-	private static StringBuilder winners = new StringBuilder();
-	private static StringBuilder losers = new StringBuilder();
+	private StringBuilder winners = new StringBuilder();
+	private StringBuilder losers = new StringBuilder();
 
-	public static void start() {
+	public void start() {
 		Dump dump = new Dump();
 		Factory factory = new Factory(dump, Constants.FACTORY);
 		threads.add(factory);
@@ -48,7 +48,7 @@ public class Competition {
 
 	}
 
-	private static void findWinner(List<Scientist> list) {
+	private void findWinner(List<Scientist> list) {
 		List<Integer> countOfRobots = list.stream()
 				.map(scientist -> RobotLaboratory.createRobots(scientist.getStockMap()))
 				.collect(Collectors.toList());
@@ -79,7 +79,7 @@ public class Competition {
 		}
 	}
 
-	private static void printResults() {
+	private void printResults() {
 
 		System.out.println();
 		System.out.println("R_E_S_S_U_L_T_S");
