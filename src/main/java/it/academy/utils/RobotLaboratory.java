@@ -1,8 +1,10 @@
-package it.academy.classes.models;
+package it.academy.utils;
+
+import it.academy.controllers.resouces.Part;
 
 import java.util.*;
 
-public class Robot {
+public class RobotLaboratory {
 
 	public static int createRobots(Map<Part, Integer> map) {
 		return map.values().stream()

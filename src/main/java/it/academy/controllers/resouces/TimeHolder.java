@@ -1,4 +1,4 @@
-package it.academy.classes.models;
+package it.academy.controllers.resouces;
 
 public class TimeHolder {
 

@@ -1,13 +1,13 @@
-package it.academy.classes.threads;
+package it.academy.controllers.threads;
 
-import it.academy.classes.Dump;
-import it.academy.classes.models.Part;
-import it.academy.classes.models.TimeHolder;
+import it.academy.controllers.Dump;
+import it.academy.controllers.resouces.Part;
+import it.academy.controllers.resouces.TimeHolder;
 import it.academy.utils.Constants;
 import it.academy.utils.Rnd;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Factory extends Thread {
@@ -53,14 +53,10 @@ public class Factory extends Thread {
 	}
 
 	private List<Part> generateTodayList(int count) {
-		List<Part> list = new ArrayList<>();
-
-		IntStream.range(0, count)
-				.forEach(i -> list.add(
-						Part.values()[
-								Constants.RND.nextInt(
-										Part.values().length)]));
-		return list;
+		return IntStream.rangeClosed(Constants.MIN_FACTORY_PARTS_PER_NIGHT, count)
+				.mapToObj(i-> Part.values()[
+						Constants.RND.nextInt(Part.values().length)])
+				.collect(Collectors.toList());
 	}
 
 	private void throwParts(List<Part> list) {

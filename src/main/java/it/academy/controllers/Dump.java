@@ -1,6 +1,6 @@
-package it.academy.classes;
+package it.academy.controllers;
 
-import it.academy.classes.models.Part;
+import it.academy.controllers.resouces.Part;
 import it.academy.utils.Constants;
 
 import java.util.ArrayList;
@@ -16,9 +16,8 @@ public class Dump {
 	}
 
 	public Part pickUpAnyPart() {
-		int size = dumpList.size();
-		return size == 0 ?
+		return dumpList.isEmpty() ?
 				null :
-				dumpList.remove(Constants.RND.nextInt(size));
+				dumpList.remove(Constants.RND.nextInt(dumpList.size()));
 	}
 }

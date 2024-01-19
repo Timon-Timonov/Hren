@@ -1,11 +1,11 @@
 package it.academy;
 
-import it.academy.classes.Dump;
-import it.academy.classes.Scientist;
-import it.academy.classes.models.Robot;
-import it.academy.classes.threads.Factory;
-import it.academy.classes.threads.Minion;
-import it.academy.classes.threads.Timer;
+import it.academy.controllers.Dump;
+import it.academy.controllers.Scientist;
+import it.academy.utils.RobotLaboratory;
+import it.academy.controllers.threads.Factory;
+import it.academy.controllers.threads.Minion;
+import it.academy.controllers.threads.Timer;
 import it.academy.utils.Constants;
 
 import java.util.ArrayList;
@@ -15,13 +15,13 @@ import java.util.stream.IntStream;
 
 public class Competition {
 
-	private static List<Scientist> scientists = new ArrayList<>();
-	private static List<Thread> threads = new ArrayList<>();
+	private List<Scientist> scientists = new ArrayList<>();
+	private List<Thread> threads = new ArrayList<>();
 
-	private static StringBuilder winners = new StringBuilder();
-	private static StringBuilder losers = new StringBuilder();
+	private StringBuilder winners = new StringBuilder();
+	private StringBuilder losers = new StringBuilder();
 
-	public static void start() {
+	public void start() {
 		Dump dump = new Dump();
 		Factory factory = new Factory(dump, Constants.FACTORY);
 		threads.add(factory);
@@ -48,9 +48,9 @@ public class Competition {
 
 	}
 
-	private static void findWinner(List<Scientist> list) {
+	private void findWinner(List<Scientist> list) {
 		List<Integer> countOfRobots = list.stream()
-				.map(scientist -> Robot.createRobots(scientist.getStockMap()))
+				.map(scientist -> RobotLaboratory.createRobots(scientist.getStockMap()))
 				.collect(Collectors.toList());
 
 		int maxCount = countOfRobots.stream()
@@ -79,7 +79,7 @@ public class Competition {
 		}
 	}
 
-	private static void printResults() {
+	private void printResults() {
 
 		System.out.println();
 		System.out.println("R_E_S_S_U_L_T_S");
