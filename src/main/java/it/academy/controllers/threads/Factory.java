@@ -53,7 +53,7 @@ public class Factory extends Thread {
 	}
 
 	private List<Part> generateTodayList(int count) {
-		return IntStream.rangeClosed(Constants.MIN_FACTORY_PARTS_PER_NIGHT, count)
+		return IntStream.rangeClosed(1, count)
 				.mapToObj(i-> Part.values()[
 						Constants.RND.nextInt(Part.values().length)])
 				.collect(Collectors.toList());
