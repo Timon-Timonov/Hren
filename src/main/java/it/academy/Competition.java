@@ -42,7 +42,6 @@ public class Competition {
 				e.printStackTrace();
 			}
 		});
-
 		findWinner(scientists);
 		printResults();
 
