@@ -17,8 +17,11 @@ public interface Constants {
 	int MIN_MINION_PARTS_PER_NIGHT = 1;
 
 
+	String TIMER = "Timer___";
 	String SCIENTIST = "Scientist";
-	String FACTORY =   "Factory___";
+	String MINION = "Minion_";
+	String FACTORY =   "Factory_";
+	String DUMP =   "Dump____";
 	Random RND = new Random();
 
 }

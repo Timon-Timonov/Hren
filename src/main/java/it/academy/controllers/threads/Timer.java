@@ -9,6 +9,7 @@ public class Timer extends Thread {
 	private final TimeHolder holder = TimeHolder.getInstance();
 
 	private Timer() {
+		this.setName(Constants.TIMER);
 	}
 
 	public static synchronized Timer getInstance() {
@@ -21,23 +22,19 @@ public class Timer extends Thread {
 	@Override
 	public void run() {
 		//System.out.println(Thread.currentThread().getName() + " start. Timer");
-		for (int i = 0; i <= Constants.COUNT_OF_NIGHTS + 1; i++) {
+		for (int i = 1; i <= Constants.COUNT_OF_NIGHTS + 1; i++) {
 
 			synchronized (holder) {
 				holder.setCurrentNightNumber(i);
 				holder.notifyAll();
-				System.out.println(Thread.currentThread().getName() + "__Timer.  Night_" + i);
+				System.out.println(Thread.currentThread().getName() + " Night_" + i);
 			}
-			toSleep();
+			try {
+				Thread.sleep(Constants.NIGHT_LONG);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		//System.out.println(Thread.currentThread().getName() + " finish. Timer");
-	}
-
-	private void toSleep() {
-		try {
-			Thread.sleep(Constants.NIGHT_LONG);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 }

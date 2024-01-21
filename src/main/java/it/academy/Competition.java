@@ -15,20 +15,20 @@ import java.util.stream.IntStream;
 
 public class Competition {
 
-	private List<Scientist> scientists = new ArrayList<>();
-	private List<Thread> threads = new ArrayList<>();
+	private final List<Scientist> scientists = new ArrayList<>();
+	private final List<Thread> threads = new ArrayList<>();
 
 	private StringBuilder winners = new StringBuilder();
 	private StringBuilder losers = new StringBuilder();
 
 	public void start() {
-		Dump dump = new Dump();
+		Dump dump = new Dump(Constants.DUMP);
 		Factory factory = new Factory(dump, Constants.FACTORY);
 		threads.add(factory);
 
 		IntStream.range(0, Constants.COUNT_OF_SCIENTISTS).forEach(i -> {
 			Scientist scientist = new Scientist(Constants.SCIENTIST + (i + 1));
-			threads.add(new Minion(dump, scientist));
+			threads.add(new Minion(dump, scientist,Constants.MINION + (i + 1)));
 			scientists.add(scientist);
 		});
 
