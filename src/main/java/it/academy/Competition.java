@@ -5,7 +5,6 @@ import it.academy.controllers.Scientist;
 import it.academy.utils.RobotLaboratory;
 import it.academy.controllers.threads.Factory;
 import it.academy.controllers.threads.Minion;
-import it.academy.controllers.threads.Timer;
 import it.academy.utils.Constants;
 
 import java.util.ArrayList;
@@ -31,8 +30,6 @@ public class Competition {
 			threads.add(new Minion(dump, scientist,Constants.MINION + (i + 1)));
 			scientists.add(scientist);
 		});
-
-		threads.add(Timer.getInstance());
 
 		threads.forEach(Thread::start);
 		threads.forEach(thread -> {

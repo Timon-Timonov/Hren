@@ -20,7 +20,7 @@ public class Factory extends Thread {
 	public Factory(Dump dump, String name) {
 		this.setName(name);
 		this.dump = dump;
-		this.currentNight = 2;//2(не должна) или 1(должна) в зависимости от того должна ли фабрика в первую ночь добавлять новые детали к уже имеющимся на свалке 20-ти частям
+		this.currentNight = 1;//2(не должна) или 1(должна) в зависимости от того должна ли фабрика в первую ночь добавлять новые детали к уже имеющимся на свалке 20-ти частям
 
 	}
 
@@ -31,9 +31,18 @@ public class Factory extends Thread {
 			todayList = generateTodayList(defineCount());
 			if (dump.acceptParts(currentNight, todayList)) {
 				currentNight++;
+				waitNextNight();
 			}
 		}
 		//System.out.println(Thread.currentThread().getName() + " finish.");
+	}
+
+	private void waitNextNight() {
+		try {
+			Thread.sleep(Constants.NIGHT_LONG);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private int defineCount() {
