@@ -4,6 +4,7 @@ import it.academy.controllers.resouces.Part;
 import it.academy.controllers.threads.Factory;
 import it.academy.utils.Constants;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Dump {
 
     private final List<Part> dumpList = new ArrayList<>();
     private final String name;
-    private int currentNight = 0;
+    private int currentNight;
 
     public Dump(String name) {
         this.name = name;
@@ -38,15 +39,15 @@ public class Dump {
         }
 
         System.out.println(Thread.currentThread().getName() + " Night_"
-                + minionNight + ". Pickup " + newList.size() + " parts " + newList);
+                + minionNight + ". Pickup " + newList.size() + " parts " + newList + " timestamp: " + LocalTime.now());
 
         return newList;
     }
 
-    public synchronized boolean acceptParts(int factoryNight, List<Part> list) {
-        currentNight = factoryNight;
+    public synchronized boolean acceptParts(List<Part> list) {
+        currentNight++;
         System.out.println(Thread.currentThread().getName() + " Night_" + currentNight + ". Throw_" + list.size() + " parts: " + list
-                + " " + name + " size: " + dumpList.size() + " " + name + ":\n" + dumpList);
+                + " " + name + " size: " + dumpList.size() + " " + name + ":\n" + dumpList + " timestamp: " + LocalTime.now());
         notifyAll();
         return dumpList.addAll(list);
     }

@@ -6,6 +6,7 @@ import it.academy.controllers.resouces.Part;
 import it.academy.utils.Constants;
 import it.academy.utils.Rnd;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class Minion extends Thread {
@@ -27,6 +28,7 @@ public class Minion extends Thread {
         while (currentNight <= Constants.COUNT_OF_NIGHTS) {
             int wantToTakeInNight = defineCount();
             List<Part> backPack = dump.pickUpAnyParts(currentNight, wantToTakeInNight);
+            System.out.println("Minion night: " + currentNight + " timestamp: " + LocalTime.now());
             currentNight++;
             if (!backPack.isEmpty()) {
                 linkedScientist.acceptParts(backPack);
